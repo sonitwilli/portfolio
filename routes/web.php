@@ -216,16 +216,9 @@ Route::group(['prefix' => 'vi'], function (){
     Route::get('how-we-work', 'HomeController@getHowwework');
 });
 Route::get('/', ['as'=>'home','uses'=>'HomeController@index']);
-Route::get('portfolio', ['as'=>'portfolio', 'uses'=>'PortfolioController@getWeb']);
-Route::get('portfolio/web', ['as'=>'portfolio/web', 'uses'=>'PortfolioController@getWeb']);
-Route::get('portfolio/print', ['as'=>'portfolio/print', 'uses'=>'PortfolioController@getPrint']);
-Route::get('portfolio/app', ['as'=>'portfolio/app', 'uses'=>'PortfolioController@getApp']);
-Route::get('portfolio/brand', ['as'=>'portfolio/brand', 'uses'=>'PortfolioController@getBrand']);
-Route::get('portfolio/{cate}/{slug}', ['as'=>'portfolio.port', 'uses'=>'PortfolioController@getPortDetail']);
-Route::post('portfolioData', 'PortfolioController@portfolioData');
 Route::get('about', 'HomeController@about');
 Route::get('team', 'TeamController@getTeam');
-Route::get('contact', 'HomeController@getContact');
+//Route::get('contact', 'HomeController@getContact');
 Route::post('contact', 'HomeController@postContact');
 Route::get('how-we-work', 'HomeController@getHowwework');
 Route::get('kr',function (){

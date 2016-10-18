@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Admin\SettingController;
 use App\Mail\ContactInfo;
+use App\Mail\SendContactAdmin;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Mail;
@@ -42,6 +43,29 @@ class HomeController extends Controller
             'about'         => $about,
             'about_featured'=> $about_featured
         ]) ;
+    }
+    
+    public function postContact(){
+        $name = $_POST['name'];
+        $phone = $_POST['phone'];
+        $email = $_POST['email'];
+        $message = $_POST['message'];
+        if(isset($name)){
+            $contact = new Contact;
+            $contact->name = $name;
+            $contact->email = $email;
+            $contact->phone = $phone;
+            $contact->content = $message;
+            $contact->publish = 1;
+            $contact->save();
+
+            $setting = Setting::first();
+            Mail::to($setting->email)->send(new SendContactAdmin($contact, $setting));
+            echo 'success';
+        }else{
+            echo 'fail';
+        }
+
     }
 
 
